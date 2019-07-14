@@ -18,7 +18,7 @@ public class ParkingBoy implements Parkable {
         this.parkingLots.add(parkingLot);
     }
 
-    public ParkingBoy(List<ParkingLot> parkingLots) {
+    ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
@@ -64,7 +64,7 @@ public class ParkingBoy implements Parkable {
         parkingLots.add(parkingLot);
     }
 
-    public boolean isParkingLotsFull() {
+    boolean isParkingLotsFull() {
         if (parkingLots.size() == 0) {
             return true;
         }

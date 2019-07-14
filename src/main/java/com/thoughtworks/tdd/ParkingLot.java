@@ -16,10 +16,6 @@ public class ParkingLot {
         this.capacity = capacity;
     }
 
-    public Map<Ticket, Car> getCars() {
-        return cars;
-    }
-
     public Ticket park(Car car) {
         if (isFull() || containsCar(car) || car == null) {
             return null;
@@ -29,7 +25,7 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car fetch(Ticket ticket) {
+    Car fetch(Ticket ticket) {
         return cars.remove(ticket);
     }
 
@@ -37,7 +33,7 @@ public class ParkingLot {
         return cars.size() >= capacity;
     }
 
-    public int getRemains() {
+    int getRemains() {
         return cars.size() - capacity;
     }
 
@@ -45,7 +41,7 @@ public class ParkingLot {
         return cars.containsValue(car);
     }
 
-    public boolean containsTicket(Ticket ticket) {
+    boolean containsTicket(Ticket ticket) {
         return cars.containsKey(ticket);
     }
 
@@ -53,7 +49,7 @@ public class ParkingLot {
         return cars.isEmpty();
     }
 
-    public int getCapacity() {
+    int getCapacity() {
         return capacity;
     }
 }

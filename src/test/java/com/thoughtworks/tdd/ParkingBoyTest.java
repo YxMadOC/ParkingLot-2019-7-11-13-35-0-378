@@ -8,23 +8,23 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class ParkingBoyTest {
+class ParkingBoyTest {
 
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalErr = System.err;
 
     @BeforeEach
-    public void setUpStreams() {
+    void setUpStreams() {
         System.setErr(new PrintStream(errContent));
     }
 
     @AfterEach
-    public void restoreStreams() {
+    void restoreStreams() {
         System.setErr(originalErr);
     }
 
     @Test
-    public void should_park_a_car_and_fetch_a_car() {
+    void should_park_a_car_and_fetch_a_car() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car car = new Car();
@@ -37,7 +37,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_fetch_car_with_correspond_ticket() {
+    void should_fetch_car_with_correspond_ticket() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Car car1 = new Car();
@@ -51,7 +51,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_err_with_wrong_ticket() {
+    void should_return_err_with_wrong_ticket() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         // when
@@ -62,7 +62,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_err_with_no_ticket() {
+    void should_return_err_with_no_ticket() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         // when
@@ -73,7 +73,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_err_with_used_ticket() {
+    void should_return_err_with_used_ticket() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot());
         Ticket ticket = parkingBoy.park(new Car());
@@ -109,7 +109,7 @@ public class ParkingBoyTest {
     }
 
     @Test
-    public void should_return_err_and_null_ticket_when_parking_lot_full() {
+    void should_return_err_and_null_ticket_when_parking_lot_full() {
         // given
         ParkingBoy parkingBoy = new ParkingBoy(new ParkingLot(2));
         // when

@@ -8,18 +8,18 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class ParkingManagerTest {
+class ParkingManagerTest {
 
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     private final PrintStream originalErr = System.err;
 
     @BeforeEach
-    public void setUpStreams() {
+    void setUpStreams() {
         System.setErr(new PrintStream(errContent));
     }
 
     @AfterEach
-    public void restoreStreams() {
+    void restoreStreams() {
         System.setErr(originalErr);
     }
 

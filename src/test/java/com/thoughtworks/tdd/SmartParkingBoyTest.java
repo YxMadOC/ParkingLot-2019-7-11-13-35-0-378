@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SmartParkingBoyTest {
+class SmartParkingBoyTest {
 
     @Test
     void should_park_cars_into_the_parking_lot_contains_more_empty_positions() {
