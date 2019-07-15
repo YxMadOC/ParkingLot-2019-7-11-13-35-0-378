@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot implements Parkable{
 
     private final Map<Ticket, Car> cars = new HashMap<>();
     private final int capacity;
@@ -25,12 +25,17 @@ public class ParkingLot {
         return ticket;
     }
 
-    Car fetch(Ticket ticket) {
+    public Car fetch(Ticket ticket) {
         return cars.remove(ticket);
     }
 
     public boolean isFull() {
         return cars.size() >= capacity;
+    }
+
+    @Override
+    public boolean contains(Ticket ticket) {
+        return cars.containsKey(ticket);
     }
 
     int getRemains() {

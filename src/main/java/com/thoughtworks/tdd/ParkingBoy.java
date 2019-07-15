@@ -1,25 +1,11 @@
 package com.thoughtworks.tdd;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Arrays;
 
-public class ParkingBoy implements Parkable {
+public class ParkingBoy extends Parker {
 
-    List<ParkingLot> parkingLots;
-
-    public ParkingBoy() {
-        this.parkingLots = new ArrayList<>();
-    }
-
-    public ParkingBoy(ParkingLot parkingLot) {
-        this();
-        this.parkingLots.add(parkingLot);
-    }
-
-    ParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+    public ParkingBoy(ParkingLot... parkingLots) {
+        this.parkingLots.addAll(Arrays.asList(parkingLots));
     }
 
     public Ticket park(Car car) {
@@ -54,21 +40,6 @@ public class ParkingBoy implements Parkable {
         }
         System.err.print("Unrecognized parking ticket.");
         return null;
-    }
-
-    public void addParkingLot(ParkingLot parkingLot) {
-        if (parkingLot == null) {
-            System.err.print("Can not add a empty parking lot.");
-            return;
-        }
-        parkingLots.add(parkingLot);
-    }
-
-    boolean isParkingLotsFull() {
-        if (parkingLots.size() == 0) {
-            return true;
-        }
-        return parkingLots.stream().sorted(Comparator.comparingInt(ParkingLot::getRemains)).collect(Collectors.toList()).get(0).isFull();
     }
 
 }

@@ -6,4 +6,8 @@ public interface Parkable {
 
     Car fetch(Ticket ticket);
 
+    boolean isFull();
+
+    boolean contains(Ticket ticket);
+
 }

@@ -1,23 +1,15 @@
 package com.thoughtworks.tdd;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SuperSmartParkingBoy extends ParkingBoy {
+public class SuperSmartParkingBoy extends Parker {
 
-    public SuperSmartParkingBoy() {
-        super();
+    public SuperSmartParkingBoy(ParkingLot... parkingLots) {
+        this.parkingLots.addAll(Arrays.asList(parkingLots));
     }
-
-    public SuperSmartParkingBoy(ParkingLot parkingLot) {
-        super(parkingLot);
-    }
-
-    public SuperSmartParkingBoy(List<ParkingLot> parkingLots) {
-        super(parkingLots);
-    }
-
 
     @Override
     public Ticket park(Car car) {
@@ -29,16 +21,13 @@ public class SuperSmartParkingBoy extends ParkingBoy {
                 return null;
             }
         }
-
         ParkingLot targetParkingLot = parkingLots.stream().sorted(Comparator.comparingDouble(o -> o.getRemains() / o.getCapacity())).collect(Collectors.toList()).get(0);
 
         if (targetParkingLot.isFull()) {
             System.err.println("Not enough position.");
             return null;
         }
-
         return targetParkingLot.park(car);
-
     }
 
 }

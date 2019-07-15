@@ -1,16 +1,13 @@
 package com.thoughtworks.tdd;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public class SmartParkingBoy extends ParkingBoy {
+public class SmartParkingBoy extends Parker {
 
-    public SmartParkingBoy() {
-        super();
-    }
-
-    public SmartParkingBoy(ParkingLot parkingLot) {
-        super(parkingLot);
+    public SmartParkingBoy(ParkingLot... parkingLots) {
+        this.parkingLots.addAll(Arrays.asList(parkingLots));
     }
 
 
@@ -31,6 +28,11 @@ public class SmartParkingBoy extends ParkingBoy {
         }
         return targetParkingLot.park(car);
 
+    }
+
+    @Override
+    public Car fetch(Ticket ticket) {
+        return null;
     }
 
 }
