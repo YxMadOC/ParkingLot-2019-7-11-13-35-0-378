@@ -1,5 +1,9 @@
 package com.thoughtworks.tdd;
 
+import com.thoughtworks.tdd.exception.MissingParkingTicketException;
+import com.thoughtworks.tdd.exception.NotEnoughPositionException;
+import com.thoughtworks.tdd.exception.UnrecognizedParkingTicketException;
+
 import java.util.Arrays;
 
 public class ParkingBoy extends Parker {
@@ -9,13 +13,6 @@ public class ParkingBoy extends Parker {
     }
 
     public Ticket park(Car car) {
-        if (parkingLots == null) {
-            System.err.print("Parking boy has no parking lot.");
-            return null;
-        }
-        if (car == null) {
-            return null;
-        }
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.containsCar(car)) {
                 return null;
@@ -24,22 +21,19 @@ public class ParkingBoy extends Parker {
                 return parkingLot.park(car);
             }
         }
-        System.err.print("Not enough position.");
-        return null;
+        throw new NotEnoughPositionException();
     }
 
     public Car fetch(Ticket ticket) {
         if (ticket == null) {
-            System.err.print("Please provide your parking ticket.");
-            return null;
+            throw new MissingParkingTicketException();
         }
         for (ParkingLot parkingLot : parkingLots) {
             if (parkingLot.containsTicket(ticket)) {
                 return parkingLot.fetch(ticket);
             }
         }
-        System.err.print("Unrecognized parking ticket.");
-        return null;
+        throw new UnrecognizedParkingTicketException();
     }
 
 }
